@@ -6,22 +6,32 @@ import New_Post from './New_Post';
 import Post_Page from './Post_Page';
 import About from './About'
 import Missing from './Missing';
-import { Route, Routes,   } from 'react-router-dom';
+import { Route, Routes, useNavigate} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 function App()
 {
   return(
     <div className="App">
-      <p>Hellow world</p>
       <Header/>
+
       <Nav/>
+
+      <Routes>
+
+        <Route exact path="/" element={<Home/>}/>
+
+        <Route exact path="/post" element={<New_Post/>}/>
+
+        <Route path="/post/:id" Component={<Post_Page/>}/>
+        
+        <Route path="/about" Component={<About/>}/>
+
+        <Route path="*" Component={<Missing/>}/>
+
+      </Routes>
+
       <Footer/>
-      <Home/>
-      <New_Post/>
-      <Post_Page/>
-      <About/>
-      <Missing/>
     </div>
   );
 }
