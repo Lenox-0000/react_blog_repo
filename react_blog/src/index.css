@@ -70,12 +70,12 @@ body {
   align-items: flex-start;
 }
 
-.searchForm {
+.search_form {
   width: 80%;
   padding: 1rem 0 0 0.75rem;
 }
 
-.searchForm input[type="text"] {
+.search_form input[type="text"] {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
   min-height: 48px;
@@ -85,7 +85,7 @@ body {
   outline: none;
 }
 
-.searchForm label {
+.search_form label {
   position: absolute;
   left: -99999px;
 }
@@ -125,7 +125,7 @@ body {
   cursor: pointer;
 }
 
-.Home, .NewPost, .PostPage, .About, .Missing {
+.Home, .New_post, .Post_page, .About, .Missing {
   width: 100%;
   flex-grow: 1;
   padding: 1rem;
@@ -156,26 +156,26 @@ body {
   border-bottom: none;
 }
 
-.postDate {
+.post_date {
   font-size: 0.75rem;
   margin-top: 0.25rem;
 }
 
-.postBody {
+.post_body {
   margin: 1rem 0;
 }
 
-.newPostForm {
+.new_post_form {
   display: flex;
   flex-direction: column;
 }
 
-.newPostForm label {
+.new_post_form label {
   margin-top: 1rem;
 }
 
-.newPostForm input[type='text'], 
-.newPostForm textarea {
+.new_post_form input[type='text'], 
+.new_post_form textarea {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
   min-height: 48px;
@@ -186,11 +186,11 @@ body {
   outline: none;
 }
 
-.newPostForm textarea {
+.new_post_form textarea {
   height: 100px;
 }
 
-.newPostForm button {
+.new_post_form button {
   margin-top: 1rem;
   height: 48px;
   min-width: 48px;
@@ -200,12 +200,12 @@ body {
   cursor: pointer;
 }
 
-.Missing h2, .PostPage h2, 
-.Missing p, .PostPage p {
+.Missing h2, .Post_page h2, 
+.Missing p, .Post_page p {
   margin-bottom: 1rem;
 }
 
-.PostPage button {
+.Post_page button {
   height: 48px;
   min-width: 48px;
   border-radius: 0.25rem;
@@ -216,7 +216,7 @@ body {
   cursor: pointer;
 }
 
-.statusMsg {
+.status_msg {
   margin-top: 2rem;
 }
 
@@ -248,16 +248,16 @@ body {
     color: #333;
   }
 
-  .searchForm {
+  .search_form {
     width: 50%;
     padding: .5rem 0;
   }
  
-  .searchForm input[type="text"] {
+  .search_form input[type="text"] {
     margin-left: 0.5rem;
   }
 
-  .newPostForm textarea {
+  .new_post_form textarea {
     height: 300px;
   }
 }
