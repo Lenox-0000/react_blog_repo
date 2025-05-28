@@ -10,6 +10,9 @@ import Footer from './Footer';
 import Header from './Header';
 import Nav from './Nav';
 import api from './api/Posts';
+import Edit_Post from './Edit_Post';
+import useWindowSize from './hooks/useWindowSize';
+import useAxiosFetch from './hooks/useAxiosFetch';
 
 function App()
 {
@@ -21,7 +24,11 @@ function App()
 
   const navigate = useNavigate()
 
-  useEffect( () => { const fetch_posts = async () => { try { const response = await api.get('/posts'); set_posts(response.data)} catch(error) {if(error.response) { /*Not in the 200 HTTP response range*/ console.log(error.response.data); console.log(error.response.status); console.log(error.response.headers) } else {console.log(`Error: ${error.message}`)} } }; fetch_posts() }, [])
+  const { width } = useWindowSize()
+
+  const {data, fetch_error, is_loading} = useAxiosFetch('http://localhost:3500/posts')
+
+  useEffect( () => { set_posts(data)}, [data])
 
   const [post_title, set_post_title] = useState('')
 
@@ -84,22 +91,34 @@ function App()
 
   async function handle_edit(id)
   {
-    const datetime = format(new Date(), 'MMMM dd, yyyy pp')
+    const date_time = format(new Date(), 'MMMM dd, yyyy pp');
 
-    const updated_post = { id, title: post_title, datetime, body: post_body}
+    const updated_post = { id, title: edit_title, date_time, body: edit_body };
+    try
+    {
+      const response = await api.put(`/posts/${id}`, updated_post);
+      set_posts(posts.map(post => post.id === id ? { ...response.data } : post));
+      set_edit_title('');
+      set_edit_body('');
+      navigate('/');
+    }
+    catch (error)
+    {
+      console.log(`Error: ${error.message}`);
+    }
   }
 
 
   return(
     <div className="App">
 
-      <Header title="React blog"/>
+      <Header title="React blog" width={width}/>
 
       <Nav search={search} set_search={set_search} />
 
       <Routes>
 
-        <Route index element={<Home posts={search_results}/>}/>
+        <Route index element={<Home posts={search_results} fetch_error={fetch_error} is_loading={is_loading}/>}/>
 
         <Route path='/post'>
 
@@ -108,7 +127,9 @@ function App()
           <Route path=":id" element={<Post_Page posts={posts} handle_delete={handle_delete}/>}/>
 
         </Route>
-          
+
+          <Route path='/edit/:id' element = {<Edit_Post posts={posts} handle_edit={handle_edit} edit_title={edit_title} set_edit_title={set_edit_title} edit_body={edit_body} set_edit_body={set_edit_body}/>}/>
+
           <Route path="/about" element={<About/>}/>
 
           <Route path="*" element={<Missing/>}/>

@@ -210,9 +210,18 @@ body {
   border-radius: 0.25rem;
   padding: 0.5rem;
   font-size: 1rem;
-  background-color: red;
   color: #fff;
   cursor: pointer;
+}
+
+.delete_button
+{
+  background-color: red;
+}
+
+.edit_button
+{
+  background-color: #333;
 }
 
 .status_msg {

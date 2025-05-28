@@ -9,7 +9,9 @@ function Post_Page( {posts, handle_delete})
     return(
     <main className="Post_page">
         <article className="post">
-            {post && <> <h2>{post.title}</h2> <p className="post_date">{post.datetime}</p> <p className="post_body">{post.body}</p> <button onClick={() => handle_delete(post.id)}> Delete Post</button> </>}
+            {post && <> <h2>{post.title}</h2> <p className="post_date">{post.datetime}</p> <p className="post_body">{post.body}</p>
+            <Link to={`/edit/${post.id}`}><button className="edit_button">Edit Post</button></Link>
+            <button className="delete_button" onClick={() => handle_delete(post.id)}> Delete Post</button> </>}
             {!post && <> <h2>Unable to locate post</h2> <p> <Link to='/'> To Homepage </Link> </p> </>}
         </article>
     </main>
